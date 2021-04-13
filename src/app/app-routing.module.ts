@@ -4,15 +4,17 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { QuestionarioComponent } from './components/questionario/questionario.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserDatailsComponent } from './components/userDatails/userDatails.component';
+import { UserDetailsComponent } from './components/userDetails/userDetails.component';
 import { AddUserComponent } from './components/addUser/addUser.component';
+
+
 
 
 
 
 const routes: Routes = [
   { path: 'login'       , component: LoginComponent       , pathMatch: 'full'},
-  { path: 'userDetails' , component: UserDatailsComponent , pathMatch: 'full'},
+  { path: 'userDetails' , component: UserDetailsComponent , pathMatch: 'full'},
   { path: 'addUser'     , component: AddUserComponent     , pathMatch: 'full'},
   { path: 'principal'   , component: PrincipalComponent   , pathMatch: 'full'},
   { path: 'questionario', component: QuestionarioComponent, pathMatch: 'full'},

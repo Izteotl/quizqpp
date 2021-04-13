@@ -5,19 +5,19 @@
       <mat-error *ngIf="loginInvalid">
         The username and password were not recognised
       </mat-error>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" color ="warn">
         <input matInput placeholder="Email" formControlName="username" required>
         <mat-error>
           Favor de proporcionar un email valido
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" color ="warn">
         <input matInput type="password" placeholder="Password" formControlName="password" required>
         <mat-error>
           Favor de proporcionar un password valido
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary">Login</button>
+      <button mat-raised-button color="warn">Login</button>
     </form>
   </mat-card-content>
 </mat-card>

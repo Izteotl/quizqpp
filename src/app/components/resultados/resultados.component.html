@@ -1,62 +1,79 @@
-<mat-card>
-    <mat-card-header>
-      <mat-card-title>CUESTIONARIO CACE</mat-card-title>
-      <mat-card-subtitle><h2>Result</h2></mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-        <section class="resultados">
-          
-          <section class="estadisticas">
-            <h3>Estadisticas</h3>
-            <span>Tu puntaje:{{calificacion}}</span>
-            
-          </section>
-          
-          <section class="preguntasResumen">
-            <details>
-              <summary>Observa a mas detalle el resumen de preguntas</summary>
-              <mat-accordion>
-                <mat-expansion-panel *ngFor="let pregunta of allQuestions">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                     {{pregunta.questionId}}.
-                     <ng-katex-paragraph [paragraph]="pregunta.questionText"></ng-katex-paragraph>  
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      {{pregunta.selectedOption}}
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                    <mat-list role="respuestas">
-                      <mat-list-item
-                        *ngFor="let respuesta of pregunta.options" 
-                        role="listitem">
-                        <div class ="correcta" *ngIf="respuesta.optionValue === pregunta.answer">
-                          {{respuesta.optionValue}}.
-                          <ng-katex-paragraph [paragraph]="respuesta.optionText"></ng-katex-paragraph> 
-                        </div>
-                        <div class="incorrecto" *ngIf="respuesta.optionValue === pregunta.selectedOption && respuesta.optionValue != pregunta.answer">
-                          {{respuesta.optionValue}}.
-                          <ng-katex-paragraph [paragraph]="respuesta.optionText"></ng-katex-paragraph> 
-                        </div>
-                        <div  *ngIf="respuesta.optionValue != pregunta.answer && respuesta.optionValue != pregunta.selectedOption ">
-                          {{respuesta.optionValue}}. 
-                          <ng-katex-paragraph [paragraph]="respuesta.optionText"></ng-katex-paragraph> 
-                        </div>
-                      </mat-list-item>
-                    </mat-list>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </details>
-          </section>
-        </section>
-
-    </mat-card-content>
-    <mat-card-footer>
-     <section>
-      <mat-card-actions>
-        <button (click)="terminar()">Terminar</button>
-      </mat-card-actions>
-     </section>
-    </mat-card-footer>
-</mat-card>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-12">
+      <mat-card>
+        <mat-card-header>
+          <div class="icono">
+            <img  mat-card-image src="../../../assets/images/logotipo.png" alt="CACE">
+          </div>
+          <mat-card-title>CUESTIONARIO CACE</mat-card-title>
+          <mat-card-subtitle><h2>Resultados</h2></mat-card-subtitle>
+        </mat-card-header>
+    
+        <mat-card-content>
+            <section class="resultados">
+              
+              <section class="estadisticas">
+                <span>Obtuviste: {{calificacion | number}}% de respuestas correctas</span>
+              </section>
+              
+              <section class="preguntasResumen">
+                <details>
+                  <summary>Da click Aqui para mas detalle</summary>
+                  <mat-accordion>
+                    <mat-expansion-panel *ngFor="let pregunta of allQuestions">            
+                      <mat-expansion-panel-header class="qCorrect" *ngIf="pregunta.answer === pregunta.selectedOption">
+                        <mat-panel-title>                          
+                          <ng-katex-paragraph [paragraph]="pregunta.questionId + '. ' + pregunta.questionText"></ng-katex-paragraph>  
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          <label><p>Respuesta Seleccionada: {{pregunta.selectedOption}}</p></label>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <mat-expansion-panel-header class="qInorrect" *ngIf="pregunta.answer != pregunta.selectedOption">
+                        <mat-panel-title>                          
+                          <ng-katex-paragraph [paragraph]="pregunta.questionId + '. ' + pregunta.questionText"></ng-katex-paragraph>  
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          <label><p>Respuesta Seleccionada: {{pregunta.selectedOption}}</p></label>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                        <mat-list role="respuestas">
+                          <mat-list-item
+                            *ngFor="let respuesta of pregunta.options" 
+                            role="listitem">
+                            <div class ="correcta" *ngIf="respuesta.optionValue === pregunta.answer">
+                              <ng-katex-paragraph [paragraph]="respuesta.optionValue + ' ' + respuesta.optionText"></ng-katex-paragraph> 
+                            </div>
+                            <div class="incorrecto" *ngIf="respuesta.optionValue === pregunta.selectedOption && respuesta.optionValue != pregunta.answer">
+                              <ng-katex-paragraph [paragraph]="respuesta.optionValue + ' ' + respuesta.optionText"></ng-katex-paragraph> 
+                            </div>
+                            <div  *ngIf="respuesta.optionValue != pregunta.answer && respuesta.optionValue != pregunta.selectedOption ">
+                              <ng-katex-paragraph [paragraph]="respuesta.optionValue + ' ' + respuesta.optionText"></ng-katex-paragraph> 
+                            </div>
+                          </mat-list-item>
+                        </mat-list>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </details>
+              </section>
+            </section>
+    
+        </mat-card-content>
+        <mat-card-footer>
+         <section>
+          <mat-card-actions>
+            <button mat-raised-button 
+                    type="button" 
+                    disableRipple="false"
+                    (click)="terminar()">
+                  Terminar
+            </button>
+          </mat-card-actions>
+         </section>
+        </mat-card-footer>
+    </mat-card>
+    
+    </div>
+  </div>
+</div>  

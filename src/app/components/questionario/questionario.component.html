@@ -1,64 +1,77 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Examen</mat-card-title>
-    <mat-card-subtitle>Responde las preguntes</mat-card-subtitle>
-    <mat-card-actions>
-      <section class="section">
-        <mat-progress-bar 
-          class="margin"
-          [mode]="mode"
-          color="primary"
-          [value]="questionID"
-          bufferValue=70></mat-progress-bar>
-      </section>
-    </mat-card-actions>
-  </mat-card-header>
-  
-  <mat-card-content>
-      <section>
-      </section>
- 
-      <section  *ngIf = "preguntaActual">
-        <!--PREGUNTAS-->
-        {{preguntaActual.questionId}}
-        <ng-katex-paragraph [paragraph]="preguntaActual.questionText"></ng-katex-paragraph>
-      </section>
-      <section *ngIf = "preguntaActual">
-        <!--RESPUESTAS-->
-        <form>
-          <mat-radio-group
-            (change) = "radioChange($event.value)">
-            <mat-radio-button
-              class    = "respuesta-radio-group" 
-              *ngFor   = "let respuesta of preguntaActual.options"
-              [value]  = "respuesta.optionValue"
-              [checked]= "false">
-              <ng-katex-paragraph [paragraph]="respuesta.optionText"></ng-katex-paragraph>
-            </mat-radio-button>
-          </mat-radio-group>
-        </form>
-      </section>
-
-  </mat-card-content>
-
-  <mat-card-footer>
-    <section>
-      <mat-card-actions>
-        <button 
-          mat-raised-button
-          *ngIf="siguienteB"
-          [disabled]="disabled"
-          (click)="siguiente()">
-          Siguiente
-        </button>
-        <button 
-          mat-raised-button
-          *ngIf="!siguienteB"
-          [disabled]="disabled"
-          (click)="finalizar()">
-          Finalizar
-        </button>
-      </mat-card-actions>
-    </section>
-  </mat-card-footer>
-</mat-card>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-12">
+     
+      <mat-card>
+        <mat-card-header> 
+          <div class="icono">
+            <img  mat-card-image src="../../../assets/images/logotipo.png" alt="CACE">
+          </div>
+          <mat-card-title>Examen</mat-card-title> 
+          <mat-card-subtitle></mat-card-subtitle>
+          <mat-card-subtitle>Responde las preguntas</mat-card-subtitle>          
+          <mat-card-actions>
+            <section class="section">
+              <mat-progress-bar 
+                class="margin"
+                [mode]="mode"
+                color="primary"
+                [value]="questionID"
+                bufferValue=70></mat-progress-bar>
+            </section>
+          </mat-card-actions>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <section>
+            </section>
+       
+            <section  *ngIf = "preguntaActual">
+              <!--PREGUNTAS-->
+              <!--<ng-katex-paragraph [paragraph]="preguntaActual.questionId + '. ' + preguntaActual.questionText"></ng-katex-paragraph>-->
+              <ng-katex-html [html]="preguntaActual.questionId + '. ' + preguntaActual.questionText"></ng-katex-html>
+            </section>
+            <section *ngIf = "preguntaActual">
+              <!--RESPUESTAS-->
+              <form>
+                <mat-radio-group
+                  (change) = "radioChange($event.value)">
+                  <mat-radio-button
+                    class    = "respuesta-radio-group" 
+                    *ngFor   = "let respuesta of preguntaActual.options"
+                    [value]  = "respuesta.optionValue"
+                    [checked]= "false"
+                    color    = "warn">
+                    <ng-katex-paragraph [paragraph]="respuesta.optionValue + ' ' + respuesta.optionText"></ng-katex-paragraph>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </form>
+            </section>
+      
+        </mat-card-content>
+      
+        <mat-card-footer>
+          <section>
+            <mat-card-actions>
+              <button 
+                mat-raised-button
+                *ngIf="siguienteB"
+                [disabled]="disabled"
+                (click)="siguiente()"
+                type="button">
+                Siguiente
+              </button>
+              <button 
+                mat-raised-button
+                *ngIf="!siguienteB"
+                [disabled]="disabled"
+                (click)="finalizar()">
+                Finalizar
+              </button>
+            </mat-card-actions>
+          </section>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

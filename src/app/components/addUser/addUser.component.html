@@ -1,42 +1,40 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Agregar Usuario</mat-card-title>        
+        <mat-card-title>{{isEdit == true ? 'Editar' : 'Agregar'}} Usuario</mat-card-title>        
     </mat-card-header>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <mat-card-content>
+          <mat-form-field>
+            <mat-label>Nombre de Usuario</mat-label>
+            <input formControlName="username" matInput placeholder="cace@cace.com.mx" required> 
+            <mat-error *ngIf="addForm.controls.username.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" matInput placeholder="Mic0ntrasen4*">
+            <mat-error *ngIf="addForm.controls.password.invalid">Contraseña no valida</mat-error>
+          </mat-form-field>
+          <button mat-button color="primary">Generar Contraseña</button>
 
-    <mat-card-content>
-        
-      <mat-form-field>
-          <mat-label>Nombre de Usuario</mat-label>
-          <input matInput placeholder="cace@cace.com.mx" required> 
-          <mat-error></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="Mic0ntrasen4*">
-          <mat-error></mat-error>
-        </mat-form-field>
-        <button mat-button color="primary">Generar Contraseña</button>
+          <mat-form-field>
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="rol">
+              <mat-option value="ADMIN_ROLE" *ngIf="isAdmin()">Admin</mat-option>
+              <mat-option value="ASESOR_ROLE">Asesor</mat-option>
+              <mat-option value="ALUMNO_ROLE">Alumno</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addForm.controls.rol.invalid">Debes seleccionar un rol</mat-error>
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Rol</mat-label>
-          <mat-select>
-            <mat-option value="ROOT">Root</mat-option>
-            <mat-option value="ADMIN">Admin</mat-option>
-            <mat-option value="ASESOR">Asesor</mat-option>
-            <mat-option value="ALUMNO">Alumno</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-label>Estatus</mat-label>
-        <mat-slide-toggle name="estatus" [(ngModel)]="isChecked">Activo : {{isChecked}}</mat-slide-toggle>
-        
-        
-
-    </mat-card-content>
-    
-    <mat-card-actions>
-        <button mat-button>Agregar</button>
-        <button mat-button (click)="cancelar()">Cancelar</button>   
-    </mat-card-actions>
+          <mat-label>Estatus</mat-label>
+          <mat-slide-toggle formControlName="status" name="estatus" [(ngModel)]="isChecked" >{{addForm.controls.status.value == true ? 'Activo' : 'Inactivo'}}</mat-slide-toggle>
+          <mat-spinner *ngIf=isProcessing></mat-spinner>
+      </mat-card-content>
+      
+      <mat-card-actions>
+          <button mat-button type="submit">{{isEdit == true ? 'Actualizar' : 'Agregar'}}</button>
+          <button mat-button (click)="cancelar()">Cancelar</button>   
+      </mat-card-actions>
+  </form>
 </mat-card>

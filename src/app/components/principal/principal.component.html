@@ -14,15 +14,26 @@
             </div>
           </section>
         </mat-card-header>
+        <img mat-card-image src="../../../assets/images/CACEPRINCIPAL1.jpg" alt="CACE">
         <mat-card-content>
-          <p>El examen consta de 200 preguntas las cuales tendra que responder una a una, si no seleccionas
+          <p>El examen consta de 150 preguntas las cuales tendra que responder una a una, si no seleccionas
             una respuesta a la pregunta no podras avanzar a la siguiente, al final se presentara tu resultado.
             Si tienes alguna duda pregunta a tu asesor. Buena Suerte!</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button type="button" class="" disableRipple="false" (click)="empesarQuestionario()">Empezar
-            Examen!</button>
-		  <button mat-raised-button type="button" disableRipple="false" (click)="altaUsuario()">Usuarios</button>
+          <button mat-raised-button type="button"
+                  class="" disableRipple="false"
+                  (click)="empesarQuestionario()"
+                  color="warn">
+                  EmpezarExamen!
+          </button>
+		      <button mat-raised-button
+                  type = "button"
+                  disableRipple = "false"
+                  (click) = "altaUsuario()"
+                  *ngIf = "isAdmin()"
+                  [attr.disabled] = btnEmpezar>Usuarios</button>
+          <button mat-raised-button type="button" disableRipple="false" (click)="salir()">Salir</button>
         </mat-card-actions>
       </mat-card>
     </div>

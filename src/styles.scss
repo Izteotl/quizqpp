@@ -13,3 +13,33 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+p{
+  margin-top: 1%; 
+  text-align: justify;  
+ }
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:rgb(43, 9, 3); 
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:rgb(102, 244, 66);
+    background-color:rgb(238, 22, 22) ;
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:rgb(255, 37, 37,.26);
+  }
+
+
+
+
+.blocking-error {
+    max-width: 100vw !important;
+    .mat-dialog-container{
+        width: 520px;
+        height: 252px !important;
+    }
+}
+
+

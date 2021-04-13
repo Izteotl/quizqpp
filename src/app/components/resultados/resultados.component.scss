@@ -4,3 +4,33 @@
 .incorrecto{
     color: #ff0000 !important;
 }
+.mat-card-actions{
+    margin-left: 1%;
+}
+
+.estadisticas{
+    font-size: x-large;
+}
+
+.preguntasResumen summary{
+    font-size: medium;
+    color: #ff0000;
+}
+.qInorrect{
+    background-color: rgba(243, 117, 108, 0.781) ;
+}
+.qCorrect{
+    background-color: rgb(121, 192, 137) ;
+}
+label{
+    margin-top: 3%;
+}
+.icono{
+    width: auto;
+    text-align: right;
+}
+.icono img{
+    
+    height: 80%;
+    width: 60%;   
+}

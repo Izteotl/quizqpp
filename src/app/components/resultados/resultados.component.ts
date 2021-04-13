@@ -16,23 +16,32 @@ export class ResultadosComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    let finalizarSS    =  sessionStorage.getItem("finalizado");
+    const tokenID = sessionStorage.getItem('tokenID');
+    if( !tokenID ){
+      this.router.navigateByUrl('/login');
+    }else{
+      let finalizarSS    =  sessionStorage.getItem("finalizado");
     if(finalizarSS != "true"){
       this.router.navigateByUrl('/questionario');
     }
     let allQuestionsSS =  sessionStorage.getItem("allQuestions");
-    console.log(allQuestionsSS);
+   // console.log(allQuestionsSS);
     this.allQuestions = JSON.parse(allQuestionsSS);
-    console.log(this.allQuestions);
-    this.allQuestions.forEach(pregunta => {
-      if(pregunta.answer === pregunta.selectedOption){
-        this.correctAnswer++;
-      }
-    });
-    this.calificacion = (this.correctAnswer * 100) / this.allQuestions.length;
+   // console.log(this.allQuestions);
+    if(this.allQuestions){
+      this.allQuestions.forEach(pregunta => {
+        if(pregunta.answer === pregunta.selectedOption){
+          this.correctAnswer++;
+        }
+      });
+      this.calificacion = (this.correctAnswer * 100) / this.allQuestions.length;
+    }
+    }
+    
   }
 
   terminar(){
+    sessionStorage.removeItem('allQuestions');
     this.router.navigateByUrl('/principal');
   }
 

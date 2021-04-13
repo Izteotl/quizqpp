@@ -21,6 +21,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [],
@@ -45,7 +47,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatGridListModule,
@@ -67,7 +70,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [{
     provide: MAT_RADIO_DEFAULT_OPTIONS,

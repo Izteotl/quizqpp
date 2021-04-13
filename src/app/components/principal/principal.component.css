@@ -1,0 +1,15 @@
+mat-card img{
+    width: 90%;
+    height: 50%;
+    background-size: cover;
+}
+.icono{
+    width: auto;
+    text-align: right;
+}
+.icono img{
+    
+    height: 80%;
+    width: 60%;   
+}
+
